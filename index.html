@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Valentine Proposal</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@300;400;500&display=swap');
+
+  body {
+    font-family: 'Inter', sans-serif;
+    text-align: center;
+    background: #ffe6f0;
+    margin: 0;
+    overflow: hidden;
+  }
+  .page {
+    display: none;
+    padding-top: 100px;
+  }
+  .active { display: block; }
+  button {
+    padding: 12px 25px;
+    margin: 10px;
+    font-size: 18px;
+    border-radius: 20px;
+    border: none;
+    cursor: pointer;
+    background: #ff4da6;
+    color: white;
+    font-family: 'Inter', sans-serif;
+  }
+  h1 { color: #b30059; font-family: 'Playfair Display', serif; }
+  p { font-size: 20px; max-width: 700px; margin: auto; }
+
+  .heart {
+    position: absolute;
+    font-size: 24px;
+    animation: float 6s linear infinite;
+  }
+  @keyframes float {
+    0% { transform: translateY(100vh); opacity: 1; }
+    100% { transform: translateY(-10vh); opacity: 0; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Background music -->
+<audio id="music" src="music.mp3" loop></audio>
+
+<div id="main" class="page active">
+  <img src="doodle1.png" width="150"><br>
+  <h1>Hey [Name], will you be my Valentine?</h1>
+  <button onclick="goYes()">Yes</button>
+  <button onclick="goNo()">No</button>
+</div>
+
+<div id="noPage" class="page">
+  <img src="doodleNo.png" width="150"><br>
+  <h1>That's not an option 😌</h1>
+  <button onclick="backMain()">Try Again</button>
+</div>
+
+<div id="yesPage" class="page">
+  <img src="doodle2.png" width="150"><br>
+  <h1>Yayyyy!! 🎉</h1>
+  <p>You're officially my Valentine ❤️</p>
+  <button onclick="goNext()">Next</button>
+</div>
+
+<div id="finalPage" class="page">
+  <img src="doodle3.png" width="150"><br>
+  <img src="us.jpg" width="250"><br>
+  <h1>A little message for you</h1>
+  <p>
+    Tepli, life genuinely feels more fun, more chaotic (in a good way), and way brighter with you around.
+    From our random talks to those silly laughs we can’t even explain, every moment with you just hits different.
+    I don’t need anything fancy — just more days, more jokes, more memories with you.
+    Thanks for being you, Tepli. ❤️
+  </p>
+</div>
+
+<script>
+function show(id){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+
+function goNo(){ show('noPage'); }
+function backMain(){ show('main'); }
+
+function goYes(){
+  show('yesPage');
+  document.getElementById('music').play();
+  createHearts();
+}
+
+function goNext(){ show('finalPage'); }
+
+function createHearts(){
+  setInterval(()=>{
+    let heart = document.createElement('div');
+    heart.className='heart';
+    heart.innerHTML='❤️';
+    heart.style.left=Math.random()*100+'vw';
+    document.body.appendChild(heart);
+    setTimeout(()=>h
